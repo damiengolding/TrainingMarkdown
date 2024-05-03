@@ -1,0 +1,43 @@
+strict digraph schematic_02 {
+	rankdir=TB;
+	graph [fontname="Open Sans",fontsize="12"];
+	compound=true;labelloc="t";label="Web Security Testing Guide Implementation";
+	
+	# Nodes
+	subgraph cluster_01{
+		label="ZAP initialization";
+		webattack [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Web Application Testing Station",style="solid"];
+		initzap [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Initialize ZAP",style="solid"];
+	}
+	
+	subgraph cluster_02{
+		label="WSTG Implementation Phases";
+		info [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Information Gathering",style="solid"];
+		conf [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Configuration and Deployment Management Testing",style="solid"];
+		id [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Identity Management Testing",style="solid"];
+		authn [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Authentication Testing",style="solid"];
+		authz [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Authorization Testing",style="solid"];
+		session [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Session Management Testing",style="solid"];
+		input [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Input Validation Testing",style="solid"];
+		error [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Testing for Error Handling",style="solid"];
+		crypto [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Testing for Weak Cryptography",style="solid"];
+		logic [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Business Logic Testing",style="solid"];
+		client [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="Client-side Testing",style="solid"];
+		api [shape=box,fontcolor="Black",color="#000000",fontname="Open Sans",fontsize="12",label="API Testing",style="solid"];
+	}
+	
+	# Vertices
+	webattack -> initzap;
+	initzap -> info [ltail=cluster_01,lhead=cluster_02];
+	info -> conf;
+	conf -> id;
+	id -> authn;
+	authn -> authz;
+	authz -> session;
+	session -> input;
+	input -> error;
+	error -> crypto;
+	crypto -> logic;
+	logic -> client;
+	client -> api;
+}
